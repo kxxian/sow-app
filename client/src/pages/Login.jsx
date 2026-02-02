@@ -1,8 +1,8 @@
+import "./css/Login.css";
 import { assets } from "../assets/assets";
 import Footer from "../components/Footer";
 import LoginBackground from "../components/LoginBackground";
 import NavigationHeader from "../components/NavigationHeader";
-import "./css/Login.css";
 
 const Login = () => {
   return (
@@ -63,13 +63,13 @@ const Login = () => {
               </div>
             </form>
             <section className="gotodifferntlink">
-              <a href="/register" className="login-new-customer">
+              <a href="#" className="login-new-customer">
                 Register
               </a>
               <a
                 id="forgot-password-link"
                 className="login-forgot-password"
-                href="/forgot-password"
+                href="#"
               >
                 Forgotten password?
               </a>
