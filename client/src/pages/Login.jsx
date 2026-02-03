@@ -3,8 +3,11 @@ import { assets } from "../assets/assets";
 import Footer from "../components/Footer";
 import LoginBackground from "../components/LoginBackground";
 import NavigationHeader from "../components/NavigationHeader";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="login-container">
       {/* Background Image */}

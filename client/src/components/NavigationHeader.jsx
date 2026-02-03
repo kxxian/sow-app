@@ -1,7 +1,10 @@
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import "../pages/css/Navbar.css";
 
 const NavigationHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="navigation-out">
       <header className="navigation-header">
@@ -56,31 +59,51 @@ const NavigationHeader = () => {
               </div>
             </div>
             <div className="pc-menu">
-              <a className="pc-menu-items" href="#">
+              <Link
+                className="pc-menu-items"
+                to="/"
+                onClick={() => scrollTo(0, 0)}
+              >
                 <span className="collectionSpan">
                   <p className="collectionitem">Home</p>
                 </span>
-              </a>
-              <a className="pc-menu-items" href="#">
+              </Link>
+              <Link
+                className="pc-menu-items"
+                to="/order"
+                onClick={() => scrollTo(0, 0)}
+              >
                 <span className="collectionSpan">
                   <p className="collectionitem">Order</p>
                 </span>
-              </a>
-              <a className="pc-menu-items" href="#">
+              </Link>
+              <Link
+                className="pc-menu-items"
+                to="/our-customers"
+                onClick={() => scrollTo(0, 0)}
+              >
                 <span className="collectionSpan">
                   <p className="collectionitem">Our Customers</p>
                 </span>
-              </a>
-              <a className="pc-menu-items" href="#">
+              </Link>
+              <Link
+                className="pc-menu-items"
+                to="about-us"
+                onClick={() => scrollTo(0, 0)}
+              >
                 <span className="collectionSpan">
                   <p className="collectionitem">About us</p>
                 </span>
-              </a>
-              <a className="pc-menu-items" href="#">
+              </Link>
+              <Link
+                className="pc-menu-items"
+                to="contact-us"
+                onClick={() => scrollTo(0, 0)}
+              >
                 <span className="collectionSpan">
                   <p className="collectionitem">Contact Us</p>
                 </span>
-              </a>
+              </Link>
               <a className="pc-menu-items language-pc-menu-items" href="#">
                 <div className="">
                   <div className="language-title-box">

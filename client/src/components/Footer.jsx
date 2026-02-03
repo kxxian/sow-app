@@ -10,17 +10,17 @@ const Footer = () => {
         >
           <div className="footer--lettafaktura-text">123 Fakturera </div>
           <div className="footer-menu">
-            <a href="https://www.123fakturera.se/index.html">
+            <a href="/">
               <span>
                 <p>Home</p>
               </span>
             </a>
-            <a href="https://www.123fakturera.se/bestall.html">
+            <a href="/order">
               <span>
                 <p>Order</p>
               </span>
             </a>
-            <a href="https://www.123fakturera.se/kontaktaoss.html">
+            <a href="/contact-us">
               <span>
                 <p>Contact us</p>
               </span>
