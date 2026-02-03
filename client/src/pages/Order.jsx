@@ -52,8 +52,13 @@ const Order = () => {
 
               <div className="footer-message">
                 <p>
-                  Click Order Now to order and approve the conditions, and your
-                  first invoice is normally ready to ship within 5-10 minutes
+                  Click Order Now to order and approve the
+                  <a href="#" style={{ color: "blue" }}>
+                    {" "}
+                    conditions
+                  </a>
+                  , and your first invoice is normally ready to ship within 5-10
+                  minutes
                 </p>
               </div>
               <button type="button" className="order-button">
