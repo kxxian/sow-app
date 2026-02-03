@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../pages/css/Footer.css";
 
 const Footer = () => {
@@ -10,21 +11,21 @@ const Footer = () => {
         >
           <div className="footer--lettafaktura-text">123 Fakturera </div>
           <div className="footer-menu">
-            <a href="/">
+            <Link to="/" onClick={() => scrollTo(0, 0)}>
               <span>
                 <p>Home</p>
               </span>
-            </a>
-            <a href="/order">
+            </Link>
+            <Link to="/order" onClick={() => scrollTo(0, 0)}>
               <span>
                 <p>Order</p>
               </span>
-            </a>
-            <a href="/contact-us">
+            </Link>
+            <Link to="/contact-us" onClick={() => scrollTo(0, 0)}>
               <span>
                 <p>Contact us</p>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="footer-copyright">
