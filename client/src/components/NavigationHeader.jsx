@@ -73,35 +73,6 @@ const NavigationHeader = () => {
             </div>
           </div>
           <div className="navigation-menu-bar">
-            <div className="menu-drop-down">
-              <div className="menu-drop-down-container">
-                <a className="menu-drop-down-item" href="#">
-                  <span className="collectionSpan">
-                    <p className="menu-item-name">Home</p>
-                  </span>
-                </a>
-                <a className="menu-drop-down-item" href="#">
-                  <span className="collectionSpan">
-                    <p className="menu-item-name">Order</p>
-                  </span>
-                </a>
-                <a className="menu-drop-down-item" href="#">
-                  <span className="collectionSpan">
-                    <p className="menu-item-name">Our Customers</p>
-                  </span>
-                </a>
-                <a className="menu-drop-down-item" href="#">
-                  <span className="collectionSpan">
-                    <p className="menu-item-name">About us</p>
-                  </span>
-                </a>
-                <a className="menu-drop-down-item" href="#">
-                  <span className="collectionSpan">
-                    <p className="menu-item-name">Contact Us</p>
-                  </span>
-                </a>
-              </div>
-            </div>
             <div className="pc-menu">
               <Link
                 className="pc-menu-items"
