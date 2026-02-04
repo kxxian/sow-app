@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import "../pages/css/Navbar.css";
 import "../pages/css/LoginMenu.css";
+import "../pages/css/LangDropDown.css";
 import { TextAlignJustify } from "lucide-react";
+import { useState } from "react";
 
 const NavigationHeader = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <nav className="navigation-out">
       <header className="navigation-header">
@@ -119,82 +123,33 @@ const NavigationHeader = () => {
                   <p className="collectionitem">Contact Us</p>
                 </span>
               </Link>
-              <a className="pc-menu-items language-pc-menu-items" href="#">
-                <div className="">
+              <div className="language-dropdown">
+                {/* Button */}
+                <button
+                  className="pc-menu-items language-pc-menu-items"
+                  onClick={() => setOpen(!open)}
+                >
                   <div className="language-title-box">
-                    {" "}
                     <p className="language-name">English</p>
                     <img
                       src={assets.GB}
                       className="flag-icon drop-down-image"
-                      alt=""
-                    />{" "}
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div className="lang-drop">
-              <div className="lang-drop-container">
-                <div className="dropdownList">
-                  <div className="language-Svenska drop-down-element">
-                    <div className="drop-down-lang-name">Svenska</div>
-                    <div className="drop-down-image-div">
-                      <img
-                        src={assets.SE}
-                        className="drop-down-image"
-                        alt="Svenska"
-                      />
-                    </div>
-                  </div>
-                  <div className="language-English drop-down-element">
-                    <div className="drop-down-lang-name">English</div>
-                    <div className="drop-down-image-div">
-                      <img
-                        src={assets.GB}
-                        className="drop-down-image"
-                        alt="English"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="lang-dropk">
-            <div>
-              <div className="dropdownContainer">
-                <div className="language-box">
-                  {" "}
-                  <p className="flag-name collectionitem">English</p>
-                  <img
-                    src={assets.GB}
-                    className="icon-flag-nav"
-                    alt="English"
-                  />{" "}
-                </div>
-              </div>
-              <div className="dropdownList">
-                <div className="language-Svenska drop-down-element">
-                  <div className="drop-down-lang-name">Svenska</div>
-                  <div className="drop-down-image-div">
-                    <img
-                      src={assets.SE}
-                      className="drop-down-image"
-                      alt="Svenska"
-                    />
-                  </div>
-                </div>
-                <div className="language-English drop-down-element">
-                  <div className="drop-down-lang-name">English</div>
-                  <div className="drop-down-image-div">
-                    <img
-                      src={assets.GB}
-                      className="drop-down-image"
                       alt="English"
                     />
                   </div>
-                </div>
+                </button>
               </div>
+              {/* Dropdown menu */}
+              {open && (
+                <ul className="language-menu">
+                  <li>
+                    <img src={assets.GB} className="flag-icon" /> English
+                  </li>
+                  <li>
+                    <img src={assets.SE} className="flag-icon" /> Svenska
+                  </li>
+                </ul>
+              )}
             </div>
           </div>
         </section>

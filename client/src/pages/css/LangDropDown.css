@@ -1,0 +1,39 @@
+.language-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.pc-menu-items {
+  background: transparent;
+  cursor: pointer;
+}
+
+.language-menu {
+  position: absolute;
+  right: 0;
+  top: 110%;
+  background: white;
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 160px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.language-menu li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: black;
+}
+
+.language-menu li:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.flag-icon {
+  width: 30px;
+  height: 25px;
+}
