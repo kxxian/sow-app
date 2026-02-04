@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import "../pages/css/Navbar.css";
+import "../pages/css/LoginMenu.css";
+import { TextAlignJustify } from "lucide-react";
 
 const NavigationHeader = () => {
-  const navigate = useNavigate();
-
   return (
     <nav className="navigation-out">
       <header className="navigation-header">
@@ -14,19 +14,63 @@ const NavigationHeader = () => {
               <img alt="" className="navigation-logo" src={assets.logo} />
             </a>
           </div>
+
           <div className="open-menu-dds">
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth="0"
-              viewBox="0 0 24 24"
-              className="navigation-svg"
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
-            </svg>
+            <div className="dropdown">
+              <input type="checkbox" id="menuToggle" hidden />
+
+              <label htmlFor="menuToggle" className="menu-btn">
+                <TextAlignJustify />
+              </label>
+
+              <ul className="menu">
+                <li>
+                  <Link
+                    to="/"
+                    onClick={() => scrollTo(0, 0)}
+                    className="menu-link"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/order"
+                    onClick={() => scrollTo(0, 0)}
+                    className="menu-link"
+                  >
+                    Order
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/our-customers"
+                    onClick={() => scrollTo(0, 0)}
+                    className="menu-link"
+                  >
+                    Our Customers
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/about-us"
+                    onClick={() => scrollTo(0, 0)}
+                    className="menu-link"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/contact-us"
+                    onClick={() => scrollTo(0, 0)}
+                    className="menu-link"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="navigation-menu-bar">
             <div className="menu-drop-down">
