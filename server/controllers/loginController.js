@@ -17,7 +17,7 @@ export const userLogin = async (req, res) => {
     }
 
     const token = jwt.sign(
-      { userId: user.id, email: user.email },
+      { userId: user.id, email: user.email, contactPerson: user.contactPerson },
       process.env.JWT_SECRET,
       { expiresIn: "7d" },
     );
@@ -30,5 +30,23 @@ export const userLogin = async (req, res) => {
   } catch (error) {
     console.log(`Error: ${error}`);
     res.status(500).json({ message: error.code || error.message });
+  }
+};
+
+export const userMe = async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.userId },
+      select: {
+        id: true,
+        email: true,
+        businessName: true,
+        contactPerson: true,
+      },
+    });
+    return res.json({ user });
+  } catch (error) {
+    console.log(`Error: ${error}`);
+    res.status(401).json({ message: "Invalid token" });
   }
 };
