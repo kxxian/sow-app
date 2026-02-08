@@ -1,12 +1,13 @@
-import { useState } from "react";
+import "./pages/css/Layout.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
 import Order from "./pages/Order";
 import Login from "./pages/Login";
 import OurCustomers from "./pages/OurCustomers";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import { Toaster } from "react-hot-toast";
+import PriceList from "./pages/PriceList";
+import Layout from "./pages/Layout";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <Route path="/our-customers" element={<OurCustomers />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/user" element={<Layout />}>
+          <Route path="price-list" element={<PriceList />} />
+        </Route>
       </Routes>
     </div>
   );
