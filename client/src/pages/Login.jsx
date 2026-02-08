@@ -31,8 +31,9 @@ const Login = () => {
 
       localStorage.setItem("token", res.data.token);
       console.log("Logged in:", res.data);
+      toast.dismissAll();
       toast.success("Login successful");
-      navigate("/home");
+      navigate("/user");
     } catch (error) {
       toast.dismissAll();
       toast.error(error?.response?.data?.message || error.message);
