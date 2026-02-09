@@ -20,7 +20,7 @@ body {
   background: #f3f4f6;
 }
 
-/* ========== NAVBAR ========== */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -73,7 +73,7 @@ body {
   cursor: pointer;
 }
 
-/* ========== LAYOUT CONTAINER ========== */
+/* LAYOUT CONTAINER */
 .app-layout {
   display: flex;
   flex-direction: column;
@@ -87,7 +87,7 @@ body {
   height: calc(100vh - 64px); /* Full screen minus navbar */
 }
 
-/* ========== SIDEBAR (MOBILE DEFAULT) ========== */
+/* SIDEBAR (MOBILE DEFAULT) */
 .sidebar {
   position: fixed;
   top: 64px; /* BELOW NAVBAR */
@@ -142,7 +142,7 @@ body {
   cursor: pointer;
 }
 
-/* ========== OVERLAY (MOBILE) ========== */
+/* OVERLAY (MOBILE) */
 .overlay {
   position: fixed;
   inset: 0;
@@ -155,11 +155,12 @@ body {
   display: block;
 }
 
-/* ========== MAIN CONTENT ========== */
+/* MAIN CONTENT */
 .main-content {
   flex: 1;
   padding: 1rem;
   overflow-y: auto; /* ONLY THIS SCROLLS */
+  height: calc(100vh - 64px);
 }
 
 /* ========== TABLET + DESKTOP ========== */
@@ -194,5 +195,38 @@ body {
 @media (min-width: 1024px) {
   .sidebar {
     width: 260px;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 896px) {
+  /* Sidebar hidden by default but scrollable when open */
+  .sidebar {
+    left: -260px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  html,
+  body {
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  .layout-body {
+    height: auto;
+  }
+
+  .main-content {
+    height: auto;
+    overflow-y: visible;
   }
 }
