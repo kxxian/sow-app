@@ -50,3 +50,34 @@ export const userMe = async (req, res) => {
     res.status(401).json({ message: "Invalid token" });
   }
 };
+
+export const getLang = async (req, res) => {
+  try {
+    const result = await prisma.language.findFirst({
+      where: { id: 1 },
+    });
+
+    return res.json({ result });
+  } catch (error) {
+    res.status(500).json({ message: error.code || error.message });
+    console.log(`Error: ${error}`);
+  }
+};
+
+export const setLang = async (req, res) => {
+  try {
+    const { lang } = req.body;
+
+    await prisma.language.update({
+      where: { id: 1 },
+      data: {
+        lang,
+      },
+    });
+
+    res.json({ message: "Language changed..." });
+  } catch (error) {
+    res.status(500).json({ message: error.code || error.message });
+    console.log(`Error: ${error}`);
+  }
+};
