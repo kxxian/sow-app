@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import loginRouter from "./routes/loginRoutes.js";
+import priceListRouter from "./routes/priceListRoutes.js";
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(cors());
 app.get("/", (req, res) => res.send("Server is live!"));
 
 app.use("/api/login", loginRouter);
+app.use("/api/price-list", priceListRouter);
 
 const PORT = process.env.PORT || 3000;
 
