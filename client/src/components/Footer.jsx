@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import "../pages/css/Footer.css";
+import { useContext } from "react";
+import LanguageContext from "../context/LanguageContext";
+import { translations } from "../il8n/translation";
 
 const Footer = () => {
+  const { language, setLanguage } = useContext(LanguageContext);
+  const t = translations[language];
   return (
     <div className="footer">
       <footer className="footer-div" style={{ position: "relative" }}>
@@ -13,17 +18,17 @@ const Footer = () => {
           <div className="footer-menu">
             <Link to="/" onClick={() => scrollTo(0, 0)}>
               <span>
-                <p>Home</p>
+                <p>{t.home}</p>
               </span>
             </Link>
             <Link to="/order" onClick={() => scrollTo(0, 0)}>
               <span>
-                <p>Order</p>
+                <p>{t.order}</p>
               </span>
             </Link>
             <Link to="/contact-us" onClick={() => scrollTo(0, 0)}>
               <span>
-                <p>Contact us</p>
+                <p>{t.contact}</p>
               </span>
             </Link>
           </div>

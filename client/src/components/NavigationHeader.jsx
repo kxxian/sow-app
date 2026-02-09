@@ -4,10 +4,29 @@ import "../pages/css/LangDropDown.css";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { TextAlignJustify } from "lucide-react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import LanguageContext from "../context/LanguageContext";
+import { translations } from "../il8n/translation";
+import api from "../axios/axios";
 
 const NavigationHeader = () => {
   const [open, setOpen] = useState(false);
+  const { language, setLanguage } = useContext(LanguageContext);
+  const t = translations[language];
+
+  useEffect(() => {
+    api
+      .get("/api/login/lang")
+      .then((res) => setLanguage(res.data.result.lang))
+      .catch((err) => console.log(err));
+  }, [setLanguage]);
+
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+    setOpen(false);
+
+    api.post("/api/login/lang", { lang }).catch((err) => console.log(err));
+  };
 
   return (
     <nav className="navigation-out">
@@ -34,7 +53,7 @@ const NavigationHeader = () => {
                     onClick={() => scrollTo(0, 0)}
                     className="menu-link"
                   >
-                    Home
+                    {t.home}
                   </Link>
                 </li>
                 <li>
@@ -43,7 +62,7 @@ const NavigationHeader = () => {
                     onClick={() => scrollTo(0, 0)}
                     className="menu-link"
                   >
-                    Order
+                    {t.order}
                   </Link>
                 </li>
                 <li>
@@ -52,7 +71,7 @@ const NavigationHeader = () => {
                     onClick={() => scrollTo(0, 0)}
                     className="menu-link"
                   >
-                    Our Customers
+                    {t.customers}
                   </Link>
                 </li>
                 <li>
@@ -61,7 +80,7 @@ const NavigationHeader = () => {
                     onClick={() => scrollTo(0, 0)}
                     className="menu-link"
                   >
-                    About Us
+                    {t.about}
                   </Link>
                 </li>
                 <li>
@@ -70,7 +89,7 @@ const NavigationHeader = () => {
                     onClick={() => scrollTo(0, 0)}
                     className="menu-link"
                   >
-                    Contact Us
+                    {t.contact}
                   </Link>
                 </li>
               </ul>
@@ -84,7 +103,7 @@ const NavigationHeader = () => {
                 onClick={() => scrollTo(0, 0)}
               >
                 <span className="collectionSpan">
-                  <p className="collectionitem">Home</p>
+                  <p className="collectionitem">{t.home}</p>
                 </span>
               </Link>
               <Link
@@ -93,7 +112,7 @@ const NavigationHeader = () => {
                 onClick={() => scrollTo(0, 0)}
               >
                 <span className="collectionSpan">
-                  <p className="collectionitem">Order</p>
+                  <p className="collectionitem">{t.order}</p>
                 </span>
               </Link>
               <Link
@@ -102,7 +121,7 @@ const NavigationHeader = () => {
                 onClick={() => scrollTo(0, 0)}
               >
                 <span className="collectionSpan">
-                  <p className="collectionitem">Our Customers</p>
+                  <p className="collectionitem">{t.customers}</p>
                 </span>
               </Link>
               <Link
@@ -111,7 +130,7 @@ const NavigationHeader = () => {
                 onClick={() => scrollTo(0, 0)}
               >
                 <span className="collectionSpan">
-                  <p className="collectionitem">About us</p>
+                  <p className="collectionitem">{t.about}</p>
                 </span>
               </Link>
               <Link
@@ -120,7 +139,7 @@ const NavigationHeader = () => {
                 onClick={() => scrollTo(0, 0)}
               >
                 <span className="collectionSpan">
-                  <p className="collectionitem">Contact Us</p>
+                  <p className="collectionitem">{t.contact}</p>
                 </span>
               </Link>
               <div className="language-dropdown">
@@ -130,22 +149,32 @@ const NavigationHeader = () => {
                   onClick={() => setOpen(!open)}
                 >
                   <div className="language-title-box">
-                    <p className="language-name">English</p>
-                    <img
-                      src={assets.GB}
-                      className="flag-icon drop-down-image"
-                      alt="English"
-                    />
+                    <p className="language-name">
+                      {language === "en" ? "English" : "Svenska"}
+                    </p>
+                    {language === "en" ? (
+                      <img
+                        src={assets.GB}
+                        className="flag-icon drop-down-image"
+                        alt="English"
+                      />
+                    ) : (
+                      <img
+                        src={assets.SE}
+                        className="flag-icon drop-down-image"
+                        alt="Svenska"
+                      />
+                    )}
                   </div>
                 </button>
               </div>
               {/* Dropdown menu */}
               {open && (
                 <ul className="language-menu">
-                  <li>
+                  <li onClick={() => handleLanguageChange("en")}>
                     <img src={assets.GB} className="flag-icon" /> English
                   </li>
-                  <li>
+                  <li onClick={() => handleLanguageChange("sv")}>
                     <img src={assets.SE} className="flag-icon" /> Svenska
                   </li>
                 </ul>
