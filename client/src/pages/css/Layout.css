@@ -38,6 +38,11 @@ body {
 
 .sidebar-icon {
   margin-right: 5px;
+  color: #374151;
+}
+
+.sidebar-link.active .sidebar-icon {
+  color: #2563eb;
 }
 
 .logo {
