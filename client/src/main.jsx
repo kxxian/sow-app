@@ -3,9 +3,12 @@ import "./index.css";
 import "./pages/css/Layout.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
+import { LanguageProvider } from "./context/LanguageContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <App />
+    <LanguageProvider>
+      <App />
+    </LanguageProvider>
   </BrowserRouter>,
 );
