@@ -8,6 +8,11 @@ import ContactUs from "./pages/ContactUs";
 import { Toaster } from "react-hot-toast";
 import PriceList from "./pages/PriceList";
 import Layout from "./pages/Layout";
+import Invoices from "./pages/Invoices";
+import Customers from "./pages/Customers";
+import MyBusiness from "./pages/MyBusiness";
+import InvoiceJournal from "./pages/InvoiceJournal";
+import MultipleInvoices from "./pages/MultipleInvoices";
 
 function App() {
   return (
@@ -20,7 +25,12 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/user" element={<Layout />}>
+          <Route path="invoices" element={<Invoices />} />
+          <Route path="customers" element={<Customers />} />
+          <Route path="my-business" element={<MyBusiness />} />
+          <Route path="invoice-journal" element={<InvoiceJournal />} />
           <Route path="price-list" element={<PriceList />} />
+          <Route path="multiple-invoices" element={<MultipleInvoices />} />
         </Route>
       </Routes>
     </div>
