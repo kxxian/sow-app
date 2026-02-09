@@ -2,6 +2,13 @@
   box-sizing: border-box;
   margin: 0;
 }
+
+html,
+body {
+  height: 100%;
+  overflow: auto;
+}
+
 body {
   font-family:
     system-ui,
@@ -13,7 +20,7 @@ body {
   background: #f3f4f6;
 }
 
-/* NAVBAR */
+/* ========== NAVBAR ========== */
 .navbar {
   position: fixed;
   top: 0;
@@ -29,13 +36,17 @@ body {
   z-index: 1000;
 }
 
+.sidebar-icon {
+  margin-right: 5px;
+}
+
 .logo {
   font-weight: 600;
   display: none;
 }
 
 .logo p {
-  font-size: 11.5px;
+  font-size: 12px;
 }
 
 .flag {
@@ -49,46 +60,57 @@ body {
   width: 25px;
 }
 
+/* Hamburger */
 .hamburger {
-  padding: 1rem;
   background: transparent;
-  color: #fff;
-  transition: left 0.3s ease;
-  z-index: 999;
-  overflow-y: auto;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
-/* Mobile (default) */
-.sidebar {
-  padding-top: 10px;
-  padding-left: 20px;
-  position: fixed;
-  background: #fff;
-  top: 64px;
-  left: -80%; /* use relative % instead of fixed px */
-  /* width: 80vw;  */
-  width: 260px;
-  flex-shrink: 0;
+/* ========== LAYOUT CONTAINER ========== */
+.app-layout {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  /* height: calc(100vh - 64px); */
-  max-width: 260px; /* optional max */
-  z-index: 1000;
-  overflow-y: scroll; /* allow vertical scrolling */
-  scrollbar-width: none; /* for Firefox */
-  -ms-overflow-style: none;
+}
+
+/* Body area (below navbar) */
+.layout-body {
+  display: flex;
+  margin-top: 64px; /* IMPORTANT */
+  height: calc(100vh - 64px); /* Full screen minus navbar */
+}
+
+/* ========== SIDEBAR (MOBILE DEFAULT) ========== */
+.sidebar {
+  position: fixed;
+  top: 64px; /* BELOW NAVBAR */
+  left: -260px; /* hidden by default */
+  width: 260px;
+  height: calc(100vh - 64px); /* FULL HEIGHT */
+  background: #fff;
+  padding: 1rem;
+  overflow-y: auto;
   transition: left 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar::-webkit-scrollbar {
-  display: none; /* hide scrollbar in Chrome, Safari, Edge */
-}
-
+/* When opened on mobile */
 .sidebar.open {
   left: 0;
 }
-.sidebar h3 {
-  margin-bottom: 1rem;
+
+/* Hide scrollbar */
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
+.sidebar {
+  scrollbar-width: none;
+}
+
+/* Sidebar links */
 .sidebar a {
   display: block;
   padding: 0.5rem 0;
@@ -96,6 +118,15 @@ body {
   text-decoration: none;
 }
 
+/* Active link */
+.sidebar-link.active {
+  font-weight: bold;
+  color: #6266f0;
+  background: rgba(98, 102, 240, 0.1);
+  border-radius: 6px;
+}
+
+/* Close button (mobile only) */
 .sidebar-close {
   margin-top: 1rem;
   background: #4f46e5;
@@ -106,131 +137,57 @@ body {
   cursor: pointer;
 }
 
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #000;
-  text-decoration: none;
-  padding: 0.5rem 0;
-  transition:
-    background 0.2s,
-    color 0.2s;
-}
-
-.sidebar-link.active {
-  font-weight: bold;
-  color: #6266f0; /* highlight color */
-  background-color: rgba(98, 102, 240, 0.1);
-  border-radius: 5px;
-}
-
-/* Outer container  */
-.app-layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Body flex container: sidebar + main */
-.layout-body {
-  display: flex;
-  width: 100%;
-  min-height: calc(100vh - 64px);
-  /* flex: 1; */
-}
-
-/* overlay */
+/* ========== OVERLAY (MOBILE) ========== */
 .overlay {
   position: fixed;
   inset: 0;
-  /* background: rgba(0, 0, 0, 0.4); */
+  background: rgba(0, 0, 0, 0.35);
+  display: none;
   z-index: 999;
 }
 
-/* .overlay { */
-/*   position: fixed; */
-/*   inset: 0; */
-/*   /* background: rgba(0, 0, 0, 0.4); */
-*/
-/*   background: #fff; */
-/*   display: none; */
-/*   z-index: 998; */
-/* } */
 .overlay.show {
   display: block;
 }
 
-/* MAIN CONTENT */
+/* ========== MAIN CONTENT ========== */
 .main-content {
   flex: 1;
-  margin-top: 50px;
-  padding: 1;
-  min-height: calc(100vh - 64px);
-  overflow-x: auto;
-  /* display: flex; */
-  /* justify-content: center; */
-  /* min-height: calc(100vh - 64px); */
-  /* overflow-x: hidden; */
+  padding: 1rem;
+  overflow-y: auto; /* ONLY THIS SCROLLS */
 }
 
-.sidebar-icon {
-  margin-right: 7px;
-}
-
-/* TABLET & DESKTOP */
+/* ========== TABLET + DESKTOP ========== */
 @media (min-width: 640px) {
+  html,
+  body {
+    overflow: hidden;
+  }
+
   .sidebar {
-    padding-left: 15px;
-    position: relative;
-    left: 0 !important;
-    width: 260px;
-    height: 100vh;
-    flex-shrink: 0;
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1); /* sidebar look */
-    border-right: 1px solid #e5e5e5;
+    position: fixed;
+    left: 0;
+    height: 100%;
+  }
+
+  .main-content {
+    margin-left: 260px; /* sidebar already in layout */
+  }
+
+  .hamburger,
+  .overlay,
+  .sidebar-close {
+    display: none;
   }
 
   .logo {
     display: block;
   }
-
-  .main-content {
-    margin-left: 5px;
-    /* justify-content: center; */
-  }
-
-  .hamburger {
-    display: none;
-  }
-  .overlay {
-    display: none !important;
-  }
-  .sidebar-close {
-    display: none;
-  }
 }
 
-/* Mobile + small tablets (less than 1024px) */
-
+/* ========== LARGE DESKTOP ========== */
 @media (min-width: 1024px) {
   .sidebar {
-    position: relative;
-    left: 0;
     width: 260px;
-    height: auto;
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .overlay {
-    display: none;
-  }
-
-  .sidebar-close {
-    display: none;
-  }
-
-  .hamburger {
-    display: none;
   }
 }
