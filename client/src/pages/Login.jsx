@@ -5,11 +5,15 @@ import LoginBackground from "../components/LoginBackground";
 import NavigationHeader from "../components/NavigationHeader";
 import { useNavigate } from "react-router-dom";
 import api from "../axios/axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import LanguageContext from "../context/LanguageContext";
+import { translations } from "../il8n/translation";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { language, setLanguage } = useContext(LanguageContext);
+  const t = translations[language];
 
   const [formData, setFormData] = useState({
     email: "",
@@ -52,19 +56,23 @@ const Login = () => {
         <div className="login-content-root">
           <div className="back-login">
             <form onSubmit={handleSubmit} noValidate="" autoComplete="off">
-              <h2 className="login-heading">Log in</h2>
+              <h2 className="login-heading">{t.login}</h2>
               <section className="login-section">
                 <div className="login-email">
                   <div>
                     <label htmlFor="" className="login-email-label">
-                      Enter your email address
+                      {t.email}
                     </label>
                   </div>
                   <InputField
                     className="login-input"
                     type="email"
                     value={formData.email}
-                    placeholder="Email address"
+                    placeholder={
+                      language === "en"
+                        ? t.emailPlaceholder
+                        : t.emailPlaceholderSV
+                    }
                     onChange={(v) => handleInputChange("email", v)}
                     required={true}
                   />
@@ -72,16 +80,18 @@ const Login = () => {
                 <span className="email-error-span error-span"></span>
                 <div className="login-password">
                   <div>
-                    <label className="login-password-label">
-                      Enter your password
-                    </label>
+                    <label className="login-password-label">{t.password}</label>
                   </div>
                   <div className="password-input-div">
                     <InputField
                       className="login-input"
                       type="password"
                       value={formData.password}
-                      placeholder="Password"
+                      placeholder={
+                        language === "en"
+                          ? t.passwordPlaceholder
+                          : t.passwordPlaceholderSV
+                      }
                       onChange={(v) => handleInputChange("password", v)}
                       required={true}
                     />
@@ -93,20 +103,20 @@ const Login = () => {
               </section>
               <div className="Login-Button-div">
                 <button className="Login-Button" type="submit">
-                  Log in
+                  {t.login}
                 </button>
               </div>
             </form>
             <section className="gotodifferntlink">
               <a href="#" className="login-new-customer">
-                Register
+                {t.register}
               </a>
               <a
                 id="forgot-password-link"
                 className="login-forgot-password"
                 href="#"
               >
-                Forgotten password?
+                {t.forgotPassword}
               </a>
             </section>
           </div>
