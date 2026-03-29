@@ -163,6 +163,55 @@ body {
   height: calc(100vh - 64px);
 }
 
+.list-action .edit-btn {
+  color: green;
+}
+
+.pricelist-label {
+  margin: 3px 5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.pricelist-inputs {
+  margin-top: 5px;
+}
+
+.pricelist-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pricelist-actions .cancel-action {
+  background-color: #ff3131;
+  padding: 10px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.pricelist-actions .cancel-action:hover {
+  background-color: red;
+}
+
+.pricelist-actions .submit-action {
+  background-color: #4f47e4;
+  padding: 10px;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.pricelist-actions .submit-action:hover {
+  background-color: #4338ca;
+}
+
 /* ========== TABLET + DESKTOP ========== */
 @media (min-width: 640px) {
   html,

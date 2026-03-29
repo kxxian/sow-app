@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import "../pages/css/Table.css";
 import toast from "react-hot-toast";
 import api from "../axios/axios";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
+import { Edit } from "lucide-react";
 
 const PriceList = () => {
   const token = localStorage.getItem("token");
@@ -99,6 +105,7 @@ const PriceList = () => {
             <th>Unit</th>
             <th>In Stock</th>
             <th>Description</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -113,6 +120,11 @@ const PriceList = () => {
                 <td>{list.unit}</td>
                 <td>{list.inStock}</td>
                 <td>{list.description}</td>
+                <td className="list-action">
+                  <Link to={`/user/edit-price-list/${list.id}`}>
+                    <Edit size={20} className="edit-btn" />
+                  </Link>
+                </td>
               </tr>
             ))}
         </tbody>

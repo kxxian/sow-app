@@ -13,6 +13,7 @@ import Customers from "./pages/Customers";
 import MyBusiness from "./pages/MyBusiness";
 import InvoiceJournal from "./pages/InvoiceJournal";
 import MultipleInvoices from "./pages/MultipleInvoices";
+import EditPriceList from "./pages/EditPriceList";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="my-business" element={<MyBusiness />} />
           <Route path="invoice-journal" element={<InvoiceJournal />} />
           <Route path="price-list" element={<PriceList />} />
+          <Route path="edit-price-list/:id" element={<EditPriceList />} />
           <Route path="multiple-invoices" element={<MultipleInvoices />} />
         </Route>
       </Routes>
