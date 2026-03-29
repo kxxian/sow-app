@@ -37,6 +37,20 @@ export const updatePriceList = async (req, res) => {
   try {
     const priceDetails = req.body;
 
+    const inPrice = (priceDetails.inPrice = parseFloat(priceDetails.inPrice));
+    const price = (priceDetails.price = parseFloat(priceDetails.price));
+    const inStock = (priceDetails.inStock = parseFloat(priceDetails.inStock));
+
+    if (Number.isNaN(inPrice) || Number.isNaN(price) || Number.isNaN(inStock)) {
+      return res
+        .status(400)
+        .json({ message: "In Price, Price, or In Stock should be a number." });
+    }
+
+    priceDetails.inPrice = inPrice;
+    priceDetails.price = price;
+    priceDetails.inStock = inStock;
+
     const listing = await prisma.priceList.update({
       where: { id: priceDetails.id },
       data: priceDetails,
